@@ -3,7 +3,6 @@ const admin = require('firebase-admin');
 const cors = require('cors')
 const { parse } = require('json2csv');
 const path = require('path')
-const fs = require('fs')
 
 const fields = ['name', 'region', 'city', 'woreda', 'hoseNo', 'type'];
 const opts = { fields };
@@ -28,6 +27,8 @@ app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use('/download', express.static(path.join(__dirname, 'public')))
+
+const fileType = 'text/plain'
 
 
 app.post('/location', (req, res) => {
@@ -55,9 +56,10 @@ app.get('/location', async (req, res) => {
         admin.firestore(globalApp).collection('locations').get().then(results => {
             let data = results.docs.map(doc => doc.data())
             const csv = parse(data, opts);
-            fs.writeFileSync(path.join(__dirname, 'public', 'locations.csv'), csv)
+            res.attachment('locations.csv')
+            res.type('txt')
+            res.send(csv)
 
-            res.status(200).download(path.join(__dirname, 'public', 'locations.csv'))
         }).catch(err => {
             res.status(500).json({ msg: 'Error' })
             console.error(err);

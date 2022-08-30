@@ -70,7 +70,7 @@ const LocationInfo = ({ route, navigation }) => {
 
         setLoading(true)
 
-        saveLocation({ name, woreda, region, city, hoseNo, ...route.params }).then(val => {
+        saveLocation({ name, woreda, region, city, hoseNo, ...route.params, type: value }).then(val => {
             ToastAndroid.showWithGravity(
                 `Saved Location successfully!`,
                 ToastAndroid.SHORT,
@@ -91,7 +91,7 @@ const LocationInfo = ({ route, navigation }) => {
     }
 
     useEffect(() => {
-        requestLocationPermission()
+        // requestLocationPermission()
         return () => {
 
         }
