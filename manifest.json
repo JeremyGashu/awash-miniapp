@@ -1,0 +1,11 @@
+{
+   "appName": "awashtracker",
+   "description": "A mini app to track locations of POS, Bank branches and ATMs.",
+   "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Awash_Bank_Final_logo.jpg/1200px-Awash_Bank_Final_logo.jpg",
+   "primaryColor": "#FFFFFF",
+   "packageId": "com.awashbank",
+   "permissions": [],
+   "versionCode": 1,
+   "versionName": "1.0.0",
+   "independentStack": false
+}
