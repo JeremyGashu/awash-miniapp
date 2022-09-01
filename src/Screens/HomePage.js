@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { ScrollView, ToastAndroid, StyleSheet, Dimensions, TouchableOpacity, Text, View } from 'react-native'
+import { ScrollView, ToastAndroid, StyleSheet, Dimensions, TouchableOpacity, Text, View, LayoutAnimation } from 'react-native'
 import MapView, { Marker } from 'react-native-maps'
+// import { withTiming } from 'react-native-reanimated'
 import colors from '../Util/colors'
 import checkRequestPermissions from '../Util/permissions'
 
@@ -8,6 +9,8 @@ const HomePage = ({ navigation }) => {
     const [showMap, setShowMap] = useState(false)
     const [selectedLocation, setSelectedLocation] = useState()
     const mapRef = React.createRef();
+
+
 
 
     const requestPermission = async () => {
@@ -35,16 +38,20 @@ const HomePage = ({ navigation }) => {
                 {
                     showMap &&
                     <MapView ref={mapRef} onPress={e => {
-
+                        // LayoutAnimation.easeInEaseOut()
                         // changeRegion(e.nativeEvent.coordinate.latitude, e.nativeEvent.coordinate.longitude)
                         ToastAndroid.showWithGravity(
                             `Latitude : ${e.nativeEvent.coordinate.latitude}, Lang : ${e.nativeEvent.coordinate.longitude}`,
                             ToastAndroid.SHORT,
                             ToastAndroid.CENTER
                         )
+                        mapRef.current.animateToRegion({
+                            ...e.nativeEvent.coordinate, latitudeDelta: 0.015,
+                            longitudeDelta: 0.0121,
+                        })
                         setSelectedLocation(e.nativeEvent.coordinate)
-                    }} region={{
-                        latitude: selectedLocation ? selectedLocation.latitude : 8.9806, longitude: selectedLocation ? selectedLocation.longitude : 38.7578, latitudeDelta: 0.015,
+                    }} initialRegion={{
+                        latitude: 8.9806, longitude: 38.7578, latitudeDelta: 0.015,
                         longitudeDelta: 0.0121,
                     }} style={styles.map}>
                         <Marker coordinate={selectedLocation != null ? selectedLocation : { latitude: 8.9806, longitude: 38.7578 }} />

@@ -2,12 +2,15 @@ import React, { useEffect, useState } from 'react'
 import { View, Text, ScrollView, TouchableOpacity } from 'react-native'
 
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Geolocation from '@react-native-community/geolocation';
+
 
 // import { } from 'react-native-ge'
 import { buttonsStyle, headerTextErrorStyle, headerTextStyle, pinButtonContainer, pinsContainer, pinsStyleEmpty, pinsStyleFilled, pinTextsStyle } from '../Styles/PinInputPage'
 import colors from '../Util/colors';
 
 const PinInputPage = ({ navigation }) => {
+
 
     const [text, setText] = useState('')
     const [error, setError] = useState(false)
@@ -30,6 +33,25 @@ const PinInputPage = ({ navigation }) => {
     }
 
     useEffect(() => {
+        Geolocation.getCurrentPosition(
+
+            (pos) => {
+                const coords = {
+                    latitude: pos.coords.latitude,
+                    longitude: pos.coords.longitude
+                };
+                console.log(coords)
+            },
+            (err) => {
+                alert('Fetching the Position failed, please check location is enable!')
+            },
+            { enableHighAccuracy: false, timeout: 10000 }
+        );
+    })
+
+    useEffect(() => {
+
+
         if (text.length == 4) {
             if (text === '1122') {
                 navigation.navigate('HomePage')
@@ -42,20 +64,18 @@ const PinInputPage = ({ navigation }) => {
 
     const PinButton = ({ onPress, text, hasIcon = false, icon }) => {
         return (
-            <View>
-                <TouchableOpacity
-                    style={{ ...buttonsStyle, backgroundColor: hasIcon ? colors.GHOST_WHITE : buttonsStyle.backgroundColor }}
-                    onPressIn={onPress}
-                >
-                    {
-                        !hasIcon && <Text style={pinTextsStyle}>{text}</Text>
-                    }
+            <TouchableOpacity
+                style={{ ...buttonsStyle, backgroundColor: hasIcon ? colors.GHOST_WHITE : buttonsStyle.backgroundColor }}
+                onPress={onPress}
+            >
+                {
+                    !hasIcon && <Text style={pinTextsStyle}>{text}</Text>
+                }
 
-                    {
-                        hasIcon && icon
-                    }
-                </TouchableOpacity>
-            </View>
+                {
+                    hasIcon && icon
+                }
+            </TouchableOpacity>
         )
     }
 

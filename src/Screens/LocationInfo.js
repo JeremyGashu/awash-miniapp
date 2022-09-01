@@ -153,6 +153,35 @@ const LocationInfo = ({ route, navigation }) => {
             </View>
 
             <View>
+
+            <View style={{
+                    height: 65,
+                    margin: 15
+                }}>
+
+                    <Text style={{ color: '#444', fontSize: 17, marginBottom: 10 }}>Select the type of location</Text>
+                    <DropDownPicker
+
+                        placeholder=''
+                        style={{
+                            borderColor: colors.ORANGE,
+                            color: colors.DARK_GRAY,
+                            borderStyle: 'solid',
+                            borderWidth: 2,
+                            height: 57,
+                            backgroundColor: 'transparent'
+                        }}
+                        open={open}
+                        value={value}
+                        items={items}
+                        setOpen={setOpen}
+                        setValue={setValue}
+                        setItems={setItems}
+                        labelStyle={{ fontSize: 18 }}
+
+                    />
+                </View>
+                
                 <Text style={{ color: '#444', marginLeft: 15, fontSize: 17 }}>Name</Text>
                 <TextInput
                     style={inputStyle}
@@ -202,35 +231,6 @@ const LocationInfo = ({ route, navigation }) => {
                     }}
                     placeholderTextColor={colors.LIGHT_GRAY}
                 />
-
-                <View style={{
-                    height: 65,
-                    margin: 15
-                }}>
-
-                    <Text style={{ color: '#444', fontSize: 17, marginBottom: 10 }}>Select the type of location</Text>
-                    <DropDownPicker
-
-                        placeholder=''
-                        style={{
-                            borderColor: colors.ORANGE,
-                            color: colors.DARK_GRAY,
-                            borderStyle: 'solid',
-                            borderWidth: 2,
-                            height: 57,
-                            backgroundColor: 'transparent'
-                        }}
-                        open={open}
-                        value={value}
-                        items={items}
-                        setOpen={setOpen}
-                        setValue={setValue}
-                        setItems={setItems}
-                        labelStyle={{ fontSize: 18 }}
-
-                    />
-                </View>
-
 
             </View>
             <TouchableOpacity disabled={loading} onPress={() => {
