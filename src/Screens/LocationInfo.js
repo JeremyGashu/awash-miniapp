@@ -126,26 +126,6 @@ const LocationInfo = ({ route, navigation }) => {
     }, [locationGranted])
 
 
-    // useEffect(() => {
-
-
-    //     if (hasLocationPermission) {
-    //         Geolocation.getCurrentPosition(
-    //             (position) => {
-    //                 console.log(position);
-    //             },
-    //             (error) => {
-    //                 // See error code charts below.
-    //                 console.log(error.code, error.message);
-    //             },
-    //             { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
-    //         );
-    //     }
-    //     return () => {
-
-    //     }
-    // }, [])
-
     return (
         <ScrollView contentContainerStyle={{ justifyContent: 'center' }}>
             <View>
@@ -154,7 +134,7 @@ const LocationInfo = ({ route, navigation }) => {
 
             <View>
 
-            <View style={{
+                <View style={{
                     height: 65,
                     margin: 15
                 }}>
@@ -181,7 +161,7 @@ const LocationInfo = ({ route, navigation }) => {
 
                     />
                 </View>
-                
+
                 <Text style={{ color: '#444', marginLeft: 15, fontSize: 17 }}>Name</Text>
                 <TextInput
                     style={inputStyle}
