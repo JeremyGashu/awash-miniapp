@@ -225,6 +225,7 @@ const LocationInfo = ({ route, navigation }) => {
           </Text>
           <DropDownPicker
             placeholder="Region"
+            maxHeight={410}
             style={{
               borderColor: colors.ORANGE,
               color: colors.DARK_GRAY,
