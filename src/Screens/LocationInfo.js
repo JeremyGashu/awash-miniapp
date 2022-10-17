@@ -223,24 +223,26 @@ const LocationInfo = ({ route, navigation }) => {
           <Text style={{ color: "#444", fontSize: 17, marginBottom: 10 }}>
             Select Region
           </Text>
-          <DropDownPicker
-            placeholder="Region"
-            maxHeight={410}
-            style={{
-              borderColor: colors.ORANGE,
-              color: colors.DARK_GRAY,
-              borderStyle: "solid",
-              borderWidth: 2,
-              height: 57,
-            }}
-            open={regionOpen}
-            value={regionValue}
-            items={regionItems}
-            setOpen={setRegionOpen}
-            setValue={setRegionValue}
-            setItems={setRegionItems}
-            labelStyle={{ fontSize: 18 }}
-          />
+          <View>
+            <DropDownPicker
+              placeholder="Region"
+              maxHeight={410}
+              style={{
+                borderColor: colors.ORANGE,
+                color: colors.DARK_GRAY,
+                borderStyle: "solid",
+                borderWidth: 2,
+                height: 57,
+              }}
+              open={regionOpen}
+              value={regionValue}
+              items={regionItems}
+              setOpen={setRegionOpen}
+              setValue={setRegionValue}
+              setItems={setRegionItems}
+              labelStyle={{ fontSize: 18 }}
+            />
+          </View>
         </View>
 
         <Text
